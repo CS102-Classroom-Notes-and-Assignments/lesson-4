@@ -352,6 +352,8 @@ int main()
 }
 ```
 ![alt text](Flow-Chart-of-Shell-Sort.png "Title")
+
+#### Shell Sort example with helpful printf statements
 ```c
 #include <stdio.h>
 
