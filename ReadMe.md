@@ -133,9 +133,6 @@ int main()
 
 ## Symbolic constants:
 ```c
-#define LOWER 0 		/* lower limit of table */
-#define UPPER 300		/* upper limit */
-#define STEP 20		/* step size */
 #include <stdio.h>
 #define LOWER 0 		/* lower limit of table */
 #define UPPER 300		/* upper limit */
@@ -174,11 +171,16 @@ int main()
            intArr[3], intArr[4]);
 
     char charArr[3] = {'A', 'B', 'C'};
-    for (int ii=0; ii<3; ii++)
+    for (int ii = 0; ii < 3; ii++)
     {
         printf("%c ", charArr[ii]);
     }
+    charArr[0] = 'Z';
     printf("\n");
+    for (int ii = 0; ii < 3; ii++)
+    {
+        printf("%c ", charArr[ii]);
+    }
     return 0;
 }
 ```
