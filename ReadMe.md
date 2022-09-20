@@ -70,14 +70,24 @@ How will you make the above loop truly infinite?
 ## For Loops
 Similar to while, except in one line
 
-Order of evaluation: initialization with expr1, if expr2 is true continue to statement, do expr3, continue to statement if expr2 still true
+Order of evaluation:
+1. initialization with expr1
+2. if expr2 is true continue to statement, if not, loop ends
+3. do expr3
+4. goto step 2
+
+
 ```
 for (expr1; expr2; expr3)
     statement
 ```
 A typical expr3 is i++
 
-Any of the three expressions can be omitted, although the semicoloons must remain. Example: for (;;) { ..} is an “infinite” loop, which can be broken by break or return
+Any of the three expressions can be omitted, although the semicoloons must remain. Example: 
+```
+for (;;) { ..}
+```
+is an “infinite” loop, which can be broken by break or return
 
 ** page 57 has the shellsort algorithm written with 3 for loops - it's a good complex example
 
@@ -98,17 +108,30 @@ int main()
     return 0;
 }
 ```
-One final C operator is the comma which most often finds use in the for statement. A pair of expressions separated by a comma is evaluated left to right, and the type and value of the result are the type and value of the right operand. Thus in a for statement, it is possible to place multiple expressions in the various parts, for example to process two indices in parallel. 
+One final C operator is the **comma** which most often is used in the for statement. A pair of expressions separated by a comma is evaluated left to right, and the type and value of the result are the type and value of the right operand. Thus in a for statement, it is possible to place multiple expressions in the various parts, for example to process two indices in parallel. 
 
 Comma operators should be used sparingly. The most suitable uses are for constructs strongly related to each other. The commas that separate function arguments, variables in declarations are NOT comma operators. 
 
-Example for string reverse:
+#### Example for string reverse:
 ```c
-for (i = 0, j - strlen(s) -1; i < j; i++, j–)
-	c = s[i], s[i] = s[j], s[j] = c;
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[] = "hello";
+    char c;
+    for (int i = 0, j = strlen(s) - 1; i < j; i++, j--)
+    {
+        c = s[i], s[i] = s[j], s[j] = c;
+    }
+
+    printf("%s\n", s);
+    return 0;
+}
 ```
 
-Symbolic constants:
+## Symbolic constants:
 ```c
 #define LOWER 0 		/* lower limit of table */
 #define UPPER 300		/* upper limit */
