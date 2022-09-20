@@ -352,7 +352,48 @@ int main()
 }
 ```
 ![alt text](Flow-Chart-of-Shell-Sort.png "Title")
+```c
+#include <stdio.h>
 
+// K&R pg. 62
+// shellsort: sort v[0]...v[n-1] into increasing order
+int main()
+{
+    int v[10] = {4, 6, 2, 1, 3, 5, 7, 9, 8, 0};
+    int n = 10;
+    int gap, i, j, temp;
+    printf("start: ");
+    for (int k = 0; k < 10; k++)
+        printf("%d ", v[k]);
+    printf("\n");
+    for (gap = n / 2; gap > 0; gap /= 2)
+    {
+        printf("compare all numbers with a gap: %d\n", gap);
+        for (i = gap; i < n; i++)
+            for (j = i - gap; j >= 0 && v[j] > v[j + gap]; j -= gap)
+            {
+                printf("\t");
+                // print list so far
+                for (int k = 0; k < 10; k++)
+                    printf("%d ", v[k]);
+
+                temp = v[j];
+                v[j] = v[j + gap];
+                v[j + gap] = temp;
+                printf("\tj=%d j+gap=%d \t", j, j + gap);
+                // print list after swap
+                for (int k = 0; k < 10; k++)
+                    printf("%d ", v[k]);
+                printf("\n");
+            }
+    }
+    printf("Sorted: ");
+    for (int ii = 0; ii < n; ii++)
+        printf("%d ", v[ii]);
+
+    return 0;
+}
+```
 
 
 ## Do While
