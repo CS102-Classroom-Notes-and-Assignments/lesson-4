@@ -1,8 +1,8 @@
 # lesson-4
 
-## WHILE LOOPS
-Continues to run until the expression inside the while is terminated
-Commonly used with some form of counter
+## While Loops
+- Continues to run until the expression inside the while is terminated
+- Commonly used with some form of counter
 
 ```c
 expr1;
@@ -13,8 +13,14 @@ while (expr2)
 }
 ```
 
-WHILE LOOPS EXAMPLE
-Note that fahr increases by 20 per iteration.
+### While Loop Example
+
+- Note that fahr increases by 20 per iteration.
+- /*    */ denotes a multi line comment, // is a single line comment.
+- Formatted printing:
+	- printf(“%3d %6d\n”, fahr, celsius) to print the first number of each line in a field three digits wide, and the second in a field 6 digits wide.
+	- printf(%6.2f, 45.2342) → print as floating point, at least 6 wide and 2 after decimal point
+
 
 ```c
 #include <stdio.h>
@@ -43,13 +49,8 @@ int main()
 }
 ```
 
-/*    */ denotes a multi line comment, // is a single line comment.
-```
-printf(“%3d %6d\n”, fahr, celsius) to print the first number of each line in a field three digits wide, and the second in a field 6 digits wide.
-printf(%6.2f, 45.2342) → print as floating point, at least 6 wide and 2 after decimal point
-```
 
-## INFINITE LOOP
+### Infinite Loop
 ```c
 #include <stdio.h>
 
@@ -66,16 +67,21 @@ int main()
 ```
 How will you make the above loop truly infinite?
 
-## FOR LOOPS
+## For Loops
 Similar to while, except in one line
+
 Order of evaluation: initialization with expr1, if expr2 is true continue to statement, do expr3, continue to statement if expr2 still true
+```
 for (expr1; expr2; expr3)
     statement
+```
 A typical expr3 is i++
+
 Any of the three expressions can be omitted, although the semicoloons must remain. Example: for (;;) { ..} is an “infinite” loop, which can be broken by break or return
+
 ** page 57 has the shellsort algorithm written with 3 for loops - it's a good complex example
 
-## FOR LOOPS EXAMPLE
+### For Loops Example
 ```c
 #include <stdio.h>
 
@@ -126,7 +132,7 @@ int main()
 }
 ```
 
-## BASIC ARRAYS
+## Basic Arrays
 DECLARING AND ACCESSING ARRAYS
 
 ```c
@@ -154,7 +160,7 @@ int main()
 }
 ```
 
-## COUNT DIGITS, WHITE SPACE, AND OTHERS
+## Count Digits, White Space, and Others
 Run the program against itself with ./a.exe < count.c
 Array is defined as int ndigit[10];
 
@@ -195,7 +201,7 @@ int main()
 }
 ```
 
-## ATOI
+## AtoI
 ```c
 #include <stdio.h>
 #include <ctype.h>
@@ -225,7 +231,7 @@ Note that the functionality is living in main.
 Note that a lot of curly braces are not necessary.
 How would you modify this to use user input using
 
-## ATOI WITH GETCHAR()
+## AtoI With getchar()
 ```c
 #include <stdio.h>
 #include <ctype.h>
@@ -261,7 +267,7 @@ int main()
 }
 ```
 
-## SHELL SORT
+## Shell Sort
 Note the nested loops.
 You will learn more about sorts in DSA I.
 
@@ -292,7 +298,7 @@ int main()
 }
 ```
 
-## REVERSE
+## Reverse
 Note the complex expressions in the for loop.
 Strings are just arrays of chars!
 
@@ -319,7 +325,7 @@ int main()
 }
 ```
 
-## DO WHILE
+## Do While
 In contrast to the while and for loop, the body is executed first, and then the condition is tested. The do will always execute first, and is executed at least once.
 This loop will end when the while part is not satisfied.
 ```
@@ -367,7 +373,7 @@ int main()
 }
 ```
 
-## BREAK & CONTINUE
+## Break & Continue
 break -- allows you to exit the innermost enclosing loop immediately
 Can be used in a for, while, or do loop
 We have seen this used in switch
@@ -376,7 +382,7 @@ Can be used in a for, while, or do loop
 In the while and do this means that the test part is executed immediately, in the for loop, control passes to the increment step.
 Continue does not apply to switch.  A continue inside a switch inside a loop causes the next loop iteration.
 
-## BREAK EXAMPLE
+## Break Example
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -398,7 +404,7 @@ int main()
 }
 ```
 
-## CONTINUE EXAMPLE
+## Continue Example
 ```c
 #include <stdio.h>
 
@@ -424,7 +430,7 @@ The one situation where it might be helpful is if you have multiple nested loops
 For this reason we will skip an example on goto.
 
 
-## INPUT & OUTPUT
+## Input & Output
 ### SCANF
 Don't worry about what the syntax means for now
 ```c
@@ -444,8 +450,8 @@ int main()
 }
 ```
 
-## BASIC FUNCTIONS
-### ARGUMENTS & RETURN VALUES
+## Basic Functions
+### Arguments & Return Values
 Functions splits up the main function to more readable chunks
 Generally, you don't want functions to be too large (<100 lines)
 Functions are in the form:
@@ -458,18 +464,26 @@ return-type function-name(parameter declarations, if any)
 }
 ```
 
-## EXAMPLE OF USING A FUNCTION
+## Example of Using a Function
 A function must be defined in the file that is used. A function definition looks like: return-type function-name(parameter declarations, if any)
+
 ```
 { declarations 
 statements}
 ```
+
 The function declaration, called a function prototype, has to match with the function definition. It is an error if the definition of a function or any uses of it doe not agree with its prototype.
+
 Parameter names do not have to match, and are in fact optional. The prototype for a power() function can be written as int power(int m, int n); Or int power(int, int). Later in the file the function will be defined as 
+```
 int power(int base, int n) {...}
+```
 The function must be declared and or defined before it is used in main.
+
 The variables used in power are local to the function, the i in power() is not related to the i in main(). These local variables are also referred to as automatic variables. 
+
 Just as the power function returns a value to the main function, the main function returns a value to its caller, which in effect is the environment in which the program was executed. Typically a return value of zero implies normal termination; non-zero values signal unusual or erroneous termination conditions.
+
 ```c
 #include <stdio.h>
 
@@ -501,11 +515,16 @@ It is good to use functions - to make the code more readable, re-usability of fu
 
 
 The alternative to local variables are external variables. These are variables that are external to all functions, that is variables that can be accessed by name by any function. They are globally accessible. 
+
 The external variable must be defined, exactly once, outside of any function; this sets aside storage for it. The variable must also be declared in each function that wants to access it; this states the type of the variable.
+
 The declaration may be an explicit extern statement or may be implicit from context. The extern declaration can be omitted if the definition of the external variable occurs in the source file before its use in a particular function. In fact, its common practice to place definitions of all external variables at the beginning of the source file, and then omit all extern declarations. The extern declarations below are redundant.
+
 If the program is in several source files, and a variable is defined in file1 and used in file2 and file3, then extern declarations are needed in file2 and file3 to connect the occurrences of the variable. The usual practice is to collect extern declarations of variables and functions in a separate file, historically called a header, that is included by #include at the front of each source file. The suffix .h is convention for header files.
+
 Definition = place where the variable is created or assigned storage
 Declaration = place where the nature of the variable is stated but no storage is allocated
+
 ```c
 #include <stdio.h>
 #define MAXLINE 1000
