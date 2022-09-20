@@ -113,6 +113,33 @@ One final C operator is the **comma** which most often is used in the for statem
 Comma operators should be used sparingly. The most suitable uses are for constructs strongly related to each other. The commas that separate function arguments, variables in declarations are NOT comma operators. 
 
 #### Example for string reverse:
+Note the complex expressions in the for loop.
+Strings are just arrays of chars!
+
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+// K&R pg. 62
+// reverse: reverse string s in place
+
+int main()
+{
+    char s[] = "CS102";
+
+    int c, i, j;
+    for (i=0, j=strlen(s)-1; i<j; i++, j--)
+    {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
+    printf("%s", s);
+    return 0;
+}
+```
+With more commas: 
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -153,7 +180,7 @@ int main()
 ```
 
 ## Basic Arrays
-DECLARING AND ACCESSING ARRAYS
+### Declaring and Accesing Arrays
 
 ```c
 #include <stdio.h>
@@ -186,8 +213,8 @@ int main()
 ```
 
 ## Count Digits, White Space, and Others
-Run the program against itself with ./a.exe < count.c
-Array is defined as int ndigit[10];
+- Run the program against itself with ./a.exe < count.c
+- Array is defined as int ndigit[10];
 
 ```c
 #include <stdio.h>
@@ -227,7 +254,6 @@ int main()
 ```
 
 ## AtoI
-
 - Note that the functionality is living in main.
 - Note that a lot of curly braces are not necessary.
 - How would you modify this to use user input?
@@ -326,32 +352,7 @@ int main()
 }
 ```
 
-## Reverse
-Note the complex expressions in the for loop.
-Strings are just arrays of chars!
 
-```c
-#include <stdio.h>
-#include <string.h>
-
-// K&R pg. 62
-// reverse: reverse string s in place
-
-int main()
-{
-    char s[] = "ECE160";
-
-    int c, i, j;
-    for (i=0, j=strlen(s)-1; i<j; i++, j--)
-    {
-        c = s[i];
-        s[i] = s[j];
-        s[j] = c;
-    }
-    printf("%s", s);
-    return 0;
-}
-```
 
 ## Do While
 In contrast to the while and for loop, the body is executed first, and then the condition is tested. The do will always execute first, and is executed at least once.
@@ -362,9 +363,9 @@ do
 while (expression);
 ```
 
-### DO WHILE EXAMPLE
+### Do While Example
 
-The do-while is necessary, ar at least convenient, since at least one character must be installed in the array s, even if is zero.
+The do-while is necessary, or at least convenient, if at least one character must be installed in the array s, even if is zero.
 The job of itoa is slightly more complicated than might be thought at first, because the easy methods of generating the digits generate them in the wrong order. So we have chosen to generate the string backwards, then reverse it.
 
 ```c
@@ -467,7 +468,7 @@ For this reason we will skip an example on goto.
 
 
 ## Input & Output
-### SCANF
+### scanf
 Don't worry about what the syntax means for now
 ```c
 #include <stdio.h>
@@ -500,26 +501,18 @@ return-type function-name(parameter declarations, if any)
   return
 }
 ```
+- The function declaration, called a function prototype, has to match with the function definition. It is an error if the definition of a function or any uses of it doe not agree with its prototype.
+- Parameter names do not have to match, and are in fact optional. The prototype for a power() function can be written as ```int power(int m, int n)```; Or ```int power(int, int)```. Later in the file the function will be defined as 
 
-## Example of Using a Function
-A function must be defined in the file that is used. A function definition looks like: return-type function-name(parameter declarations, if any)
-
-```
-{ declarations 
-statements}
-```
-
-The function declaration, called a function prototype, has to match with the function definition. It is an error if the definition of a function or any uses of it doe not agree with its prototype.
-
-Parameter names do not have to match, and are in fact optional. The prototype for a power() function can be written as int power(int m, int n); Or int power(int, int). Later in the file the function will be defined as 
 ```
 int power(int base, int n) {...}
 ```
-The function must be declared and or defined before it is used in main.
+- The function must be declared and or defined before it is used in main.
 
-The variables used in power are local to the function, the i in power() is not related to the i in main(). These local variables are also referred to as automatic variables. 
+## Example of Using a Function
+- The variables used in power are local to the function, the i in power() is not related to the i in main(). These local variables are also referred to as automatic variables. 
 
-Just as the power function returns a value to the main function, the main function returns a value to its caller, which in effect is the environment in which the program was executed. Typically a return value of zero implies normal termination; non-zero values signal unusual or erroneous termination conditions.
+- Just as the power function returns a value to the main function, the main function returns a value to its caller, which in effect is the environment in which the program was executed. Typically a return value of zero implies normal termination; non-zero values signal unusual or erroneous termination conditions.
 
 ```c
 #include <stdio.h>
@@ -550,7 +543,7 @@ int power(int base, int n)
 ```
 It is good to use functions - to make the code more readable, re-usability of functions, …
 
-
+## External Variables 
 The alternative to local variables are external variables. These are variables that are external to all functions, that is variables that can be accessed by name by any function. They are globally accessible. 
 
 The external variable must be defined, exactly once, outside of any function; this sets aside storage for it. The variable must also be declared in each function that wants to access it; this states the type of the variable.
@@ -559,65 +552,79 @@ The declaration may be an explicit extern statement or may be implicit from cont
 
 If the program is in several source files, and a variable is defined in file1 and used in file2 and file3, then extern declarations are needed in file2 and file3 to connect the occurrences of the variable. The usual practice is to collect extern declarations of variables and functions in a separate file, historically called a header, that is included by #include at the front of each source file. The suffix .h is convention for header files.
 
-Definition = place where the variable is created or assigned storage
-Declaration = place where the nature of the variable is stated but no storage is allocated
+_Definition_ = place where the variable is created or assigned storage
+
+_Declaration_ = place where the nature of the variable is stated but no storage is allocated
 
 ```c
 #include <stdio.h>
 #define MAXLINE 1000
 
-// external variables are declared hear with their type, so storage is allocated for them
+// external variables are declared here with their type, so storage is allocated for them
 int max;
 char line[MAXLINE];
 char longest[MAXLINE];
 
-int getline(void);
+int getnewline(void);
 void copy(void);
 
-main(){
-	int len;
-	extern int max;
-	extern char longest[];
+int main()
+{
+    int len;
+    extern int max;
+    extern char longest[];
 
-	max = 0;
-while (( len = getline()) > 0)
-	if (len > max) {
-		max = len;
-		copy();
-	}
-	if (max > 0)
-		printf(“%s”, longest)
-	Return 0;
+    max = 0;
+    while ((len = getnewline()) > 0)
+    {
+        printf("\tlen: %d max: %d\n", len, max);
+        if (len > max)
+        {
+            max = len;
+            copy();
+        }
+    }
+
+    if (max > 0)
+        printf("%s", longest);
+
+    return 0;
 }
 
-int getline(void)
-{ 
-	int c, i;
-	extern char line[];
-	
-	for (i=0; i < MAXLINE -1 && (c = getchar() != EOF && c != ‘\n’; ++i)
-		line[i] = c;
-	if (c == ‘\n’) {
-		line[i] = c;
-		++i;
-	}
-	line[i] = ‘\0’;
-	return i;
+int getnewline(void)
+{
+    int c, i;
+    extern char line[];
+    for (i = 0; i < MAXLINE - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
+    {
+        line[i] = c;
+    }
+
+    if (c == '\n')
+    {
+        line[i] = c;
+        ++i;
+    }
+    line[i] = '\0';
+    printf("processing line: %s", line);
+
+    return i;
 }
 
 void copy(void)
 {
-	int i;
-	extern char line[], longest[];
-	
-	i = 0;
-	while((longest[i] = line[i]) != ‘\0’)
-		++i;
-}
-	
+    int i;
+    extern char line[], longest[];
+
+    i = 0;
+    while ((longest[i] = line[i]) != '\0')
+        ++i;
+    printf("\tcopied new longest: %s", longest);
+}	
 ```
 
  
 # Homework:
 - The C Programming Language, 2nd Edition - Kerninghan & Ritchie, Chapter 1.2, 1.3, 1.5, 1.6, 1.7, 3.4, 3.5, 3.6, 3.7, 3.8, 4.1, 4.2
-- hw link
+- coding hw assignment will be added by EOD
+- reminder, quiz next week!
