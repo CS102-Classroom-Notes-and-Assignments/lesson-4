@@ -209,24 +209,29 @@ int main()
     while ((c = getchar()) != EOF)
     {
         if (c >= '0' && c <= '9')
-            ++ndigit[c-'0'];
+            ++ndigit[c - '0'];
         else if (c == ' ' || c == '\n' || c == '\t')
             ++nwhite;
         else
             ++nother;
     }
 
-    printf("digits =");
+    printf("digits =\n");
     for (i = 0; i < 10; ++i)
-        printf(" %d", ndigit[i]);
-    printf(", white space = %d, other = %d\n",
-        nwhite, nother);
+        printf("\t%d-->%d\n", i, ndigit[i]);
+    printf("white space = %d\nother = %d\n",
+           nwhite, nother);
 
     return 0;
 }
 ```
 
 ## AtoI
+
+- Note that the functionality is living in main.
+- Note that a lot of curly braces are not necessary.
+- How would you modify this to use user input?
+
 ```c
 #include <stdio.h>
 #include <ctype.h>
@@ -252,9 +257,7 @@ int main()
     return 0;
 }
 ```
-Note that the functionality is living in main.
-Note that a lot of curly braces are not necessary.
-How would you modify this to use user input using
+
 
 ## AtoI With getchar()
 ```c
@@ -359,9 +362,11 @@ do
 while (expression);
 ```
 
-DO WHILE EXAMPLE
+### DO WHILE EXAMPLE
+
 The do-while is necessary, ar at least convenient, since at least one character must be installed in the array s, even if is zero.
 The job of itoa is slightly more complicated than might be thought at first, because the easy methods of generating the digits generate them in the wrong order. So we have chosen to generate the string backwards, then reverse it.
+
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -399,15 +404,18 @@ int main()
 ```
 
 ## Break & Continue
-break -- allows you to exit the innermost enclosing loop immediately
-Can be used in a for, while, or do loop
-We have seen this used in switch
-continue -- allows the next iteration of the enclosing loop to begin
-Can be used in a for, while, or do loop
-In the while and do this means that the test part is executed immediately, in the for loop, control passes to the increment step.
-Continue does not apply to switch.  A continue inside a switch inside a loop causes the next loop iteration.
+
+**break** -- allows you to exit the innermost enclosing loop immediately
+- Can be used in a for, while, or do loop
+- We have seen this used in switch
+
+**continue** -- allows the next iteration of the enclosing loop to begin
+- Can be used in a for, while, or do loop
+- In the while and do this means that the test part is executed immediately, in the for loop, control passes to the increment step.
+- Continue does not apply to switch.  A continue inside a switch inside a loop causes the next loop iteration.
 
 ## Break Example
+
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -450,8 +458,11 @@ int main()
 
 ## GOTO
 DO NOT USE, this can usually be replaced with other more readable code
+
 Allows you to go to other lines in your program directly
+
 The one situation where it might be helpful is if you have multiple nested loops, and you want to exit out of all the loops. Goto can do this with one statement, instead of using many breaks as breaks only exit out of the innermost loop.
+
 For this reason we will skip an example on goto.
 
 
@@ -477,8 +488,9 @@ int main()
 
 ## Basic Functions
 ### Arguments & Return Values
-Functions splits up the main function to more readable chunks
-Generally, you don't want functions to be too large (<100 lines)
+- Functions splits up the main function to more readable chunks
+- Generally, you don't want functions to be too large (<100 lines)
+
 Functions are in the form:
 ```
 return-type function-name(parameter declarations, if any)
