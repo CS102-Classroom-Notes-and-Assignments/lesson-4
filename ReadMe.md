@@ -108,55 +108,6 @@ int main()
     return 0;
 }
 ```
-One final C operator is the **comma** which most often is used in the for statement. A pair of expressions separated by a comma is evaluated left to right, and the type and value of the result are the type and value of the right operand. Thus in a for statement, it is possible to place multiple expressions in the various parts, for example to process two indices in parallel. 
-
-Comma operators should be used sparingly. The most suitable uses are for constructs strongly related to each other. The commas that separate function arguments, variables in declarations are NOT comma operators. 
-
-#### Example for string reverse:
-Note the complex expressions in the for loop.
-Strings are just arrays of chars!
-
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-// K&R pg. 62
-// reverse: reverse string s in place
-
-int main()
-{
-    char s[] = "CS102";
-
-    int c, i, j;
-    for (i=0, j=strlen(s)-1; i<j; i++, j--)
-    {
-        c = s[i];
-        s[i] = s[j];
-        s[j] = c;
-    }
-    printf("%s", s);
-    return 0;
-}
-```
-With more commas: 
-```c
-#include <stdio.h>
-#include <string.h>
-
-int main()
-{
-    char s[] = "hello";
-    char c;
-    for (int i = 0, j = strlen(s) - 1; i < j; i++, j--)
-    {
-        c = s[i], s[i] = s[j], s[j] = c;
-    }
-
-    printf("%s\n", s);
-    return 0;
-}
-```
 
 ## Symbolic constants:
 ```c
@@ -211,6 +162,57 @@ int main()
     return 0;
 }
 ```
+
+One final C operator is the **comma** which most often is used in the for statement. A pair of expressions separated by a comma is evaluated left to right, and the type and value of the result are the type and value of the right operand. Thus in a for statement, it is possible to place multiple expressions in the various parts, for example to process two indices in parallel. 
+
+Comma operators should be used sparingly. The most suitable uses are for constructs strongly related to each other. The commas that separate function arguments, variables in declarations are NOT comma operators. 
+
+#### Example for string reverse:
+Note the complex expressions in the for loop.
+Strings are just arrays of chars!
+
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+// K&R pg. 62
+// reverse: reverse string s in place
+
+int main()
+{
+    char s[] = "CS102";
+
+    int c, i, j;
+    for (i=0, j=strlen(s)-1; i<j; i++, j--)
+    {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
+    printf("%s", s);
+    return 0;
+}
+```
+With more commas: 
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[] = "hello";
+    char c;
+    for (int i = 0, j = strlen(s) - 1; i < j; i++, j--)
+    {
+        c = s[i], s[i] = s[j], s[j] = c;
+    }
+
+    printf("%s\n", s);
+    return 0;
+}
+```
+
 
 ## Count Digits, White Space, and Others
 - Run the program against itself with ./a.exe < count.c
