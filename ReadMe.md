@@ -323,83 +323,6 @@ int main()
 }
 ```
 
-## Shell Sort
-Note the nested loops.
-You will learn more about sorts in DSA I.
-
-```c
-#include <stdio.h>
-
-// K&R pg. 62
-// shellsort: sort v[0]...v[n-1] into increasing order
-int main()
-{
-    int v[10] = {4, 6, 2, 1, 3, 5, 7, 9, 8, 0};
-    int n = 10;
-    int gap, i, j, temp;
-    for (gap = n/2; gap > 0; gap /= 2)
-        for (i = gap; i < n; i++)
-            for (j=i-gap; j>=0 && v[j]>v[j+gap]; j-=gap)
-            {
-                temp = v[j];
-                v[j] = v[j+gap];
-                v[j+gap] = temp;
-            }
-
-    printf("Sorted: ");
-    for (int ii=0; ii<n; ii++)
-        printf("%d ", v[ii]);
-
-    return 0;
-}
-```
-![alt text](Flow-Chart-of-Shell-Sort.png "Title")
-
-#### Shell Sort example with helpful printf statements
-```c
-#include <stdio.h>
-
-// K&R pg. 62
-// shellsort: sort v[0]...v[n-1] into increasing order
-int main()
-{
-    int v[10] = {4, 6, 2, 1, 3, 5, 7, 9, 8, 0};
-    int n = 10;
-    int gap, i, j, temp;
-    printf("start: ");
-    for (int k = 0; k < 10; k++)
-        printf("%d ", v[k]);
-    printf("\n");
-    for (gap = n / 2; gap > 0; gap /= 2)
-    {
-        printf("compare all numbers with a gap: %d\n", gap);
-        for (i = gap; i < n; i++)
-            for (j = i - gap; j >= 0 && v[j] > v[j + gap]; j -= gap)
-            {
-                printf("\t");
-                // print list so far
-                for (int k = 0; k < 10; k++)
-                    printf("%d ", v[k]);
-
-                temp = v[j];
-                v[j] = v[j + gap];
-                v[j + gap] = temp;
-                printf("\tj=%d j+gap=%d \t", j, j + gap);
-                // print list after swap
-                for (int k = 0; k < 10; k++)
-                    printf("%d ", v[k]);
-                printf("\n");
-            }
-    }
-    printf("Sorted: ");
-    for (int ii = 0; ii < n; ii++)
-        printf("%d ", v[ii]);
-
-    return 0;
-}
-```
-
-
 ## Do While
 In contrast to the while and for loop, the body is executed first, and then the condition is tested. The do will always execute first, and is executed at least once.
 This loop will end when the while part is not satisfied.
@@ -498,6 +421,85 @@ int main()
             continue;
         printf("%d ", ii);
     }
+
+    return 0;
+}
+```
+
+# Looking Ahead
+
+
+## Shell Sort
+Note the nested loops.
+You will learn more about sorts in DSA I.
+
+```c
+#include <stdio.h>
+
+// K&R pg. 62
+// shellsort: sort v[0]...v[n-1] into increasing order
+int main()
+{
+    int v[10] = {4, 6, 2, 1, 3, 5, 7, 9, 8, 0};
+    int n = 10;
+    int gap, i, j, temp;
+    for (gap = n/2; gap > 0; gap /= 2)
+        for (i = gap; i < n; i++)
+            for (j=i-gap; j>=0 && v[j]>v[j+gap]; j-=gap)
+            {
+                temp = v[j];
+                v[j] = v[j+gap];
+                v[j+gap] = temp;
+            }
+
+    printf("Sorted: ");
+    for (int ii=0; ii<n; ii++)
+        printf("%d ", v[ii]);
+
+    return 0;
+}
+```
+![alt text](Flow-Chart-of-Shell-Sort.png "Title")
+
+#### Shell Sort example with helpful printf statements
+```c
+#include <stdio.h>
+
+// K&R pg. 62
+// shellsort: sort v[0]...v[n-1] into increasing order
+int main()
+{
+    int v[10] = {4, 6, 2, 1, 3, 5, 7, 9, 8, 0};
+    int n = 10;
+    int gap, i, j, temp;
+    printf("start: ");
+    for (int k = 0; k < 10; k++)
+        printf("%d ", v[k]);
+    printf("\n");
+    for (gap = n / 2; gap > 0; gap /= 2)
+    {
+        printf("compare all numbers with a gap: %d\n", gap);
+        for (i = gap; i < n; i++)
+            for (j = i - gap; j >= 0 && v[j] > v[j + gap]; j -= gap)
+            {
+                printf("\t");
+                // print list so far
+                for (int k = 0; k < 10; k++)
+                    printf("%d ", v[k]);
+
+                temp = v[j];
+                v[j] = v[j + gap];
+                v[j + gap] = temp;
+                printf("\tj=%d j+gap=%d \t", j, j + gap);
+                // print list after swap
+                for (int k = 0; k < 10; k++)
+                    printf("%d ", v[k]);
+                printf("\n");
+            }
+    }
+    printf("Sorted: ");
+    for (int ii = 0; ii < n; ii++)
+        printf("%d ", v[ii]);
 
     return 0;
 }
