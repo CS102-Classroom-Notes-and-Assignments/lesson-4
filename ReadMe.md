@@ -509,5 +509,5 @@ int main()
  
 # Homework:
 - The C Programming Language, 2nd Edition - Kerninghan & Ritchie, Chapter 1.2, 1.3, 1.5, 1.6, 1.7, 3.4, 3.5, 3.6, 3.7, 3.8, 4.1, 4.2
-- coding hw assignment: https://classroom.github.com/a/GzhXBB-Q
+- coding hw assignment: https://classroom.github.com/a/dFn_bZ7d
 - reminder, quiz next week! practice quiz will be posted here on Thursday
